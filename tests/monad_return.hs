@@ -1,0 +1,2 @@
+m :: IO ()
+m = return ()

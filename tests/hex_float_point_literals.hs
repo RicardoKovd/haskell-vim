@@ -1,0 +1,8 @@
+{-# LANGUAGE HexFloatLiterals #-}
+
+f1 = 0x0.1p12
+f2 = 0x0.1p-4
+f3 = 0x0.1p4
+f4 = 0xF.FF
+f5 = 0x0.01
+f6 = 0x0.1
