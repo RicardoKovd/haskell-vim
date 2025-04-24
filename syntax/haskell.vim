@@ -60,12 +60,6 @@ syn match haskellImport "^\s*\<import\>\s\+\(\<safe\>\s\+\)\?\(\<qualified\>\s\+
 	\ haskellPragma
 syn keyword haskellKeyword do case of
 
-if get(g:, 'haskell_enable_delimiter_is_type')
-	syn region haskellParens matchgroup=haskellType start="(" end=")" contains=TOP,haskellTypeSig,@Spell
-	syn region haskellBrackets matchgroup=haskellType start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
-	syn region haskellBlock matchgroup=haskellType start="{" end="}" contains=TOP,haskellBlockComment,@Spell
-endif
-
 if get(g:, 'haskell_enable_static_pointers', 0)
 	syn keyword haskellStatic static
 endif
@@ -74,9 +68,17 @@ syn keyword haskellConditional if then else
 syn match haskellNumber "\<[0-9]\+\>\|\<[0-9_]\+\>\|\<0[xX][0-9a-fA-F_]\+\>\|\<0[oO][0-7_]\+\>\|\<0[bB][10_]\+\>"
 syn match haskellFloat "\v<[0-9]%(_*[0-9])*\.[0-9]%(_*[0-9])*%(_*[eE][-+]?[0-9]%(_*[0-9])*)?>|<[0-9]%(_*[0-9])*_*[eE][-+]?[0-9]%(_*[0-9])*>|<0[xX]_*[0-9a-fA-F]%(_*[0-9a-fA-F])*\.[0-9a-fA-F]%(_*[0-9a-fA-F])*%(_*[pP][-+]?[0-9]%(_*[0-9])*)?>|<0[xX]_*[0-9a-fA-F]%(_*[0-9a-fA-F])*_*[pP][-+]?[0-9]%(_*[0-9])*>"
 syn match haskellSeparator "[,;]"
-syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,@Spell
-syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
-syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP,@Spell
+
+if get(g:, 'haskell_enable_delimiter_is_type', 0)
+	syn region haskellParens matchgroup=haskellType start="(" end=")" contains=TOP,haskellTypeSig,@Spell
+	syn region haskellBrackets matchgroup=haskellType start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
+	syn region haskellBlock matchgroup=haskellType start="{" end="}" contains=TOP,haskellBlockComment,@Spell
+else
+	syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,@Spell
+	syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
+	syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP,@Spell
+endif
+
 syn keyword haskellInfix infix infixl infixr
 syn keyword haskellBottom undefined error
 syn match haskellOperators "[-!#$%&\*\+/<=>\?@\\^|~:∷.⇒→←⤚⤙⤜⤛★∀⦇⦈⊸]\+\|\<_\>"

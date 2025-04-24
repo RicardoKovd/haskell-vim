@@ -1,3 +1,5 @@
+{- haskell block comment -}
+
 newtype R = R
     { r :: R
     }
