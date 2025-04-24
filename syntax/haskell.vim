@@ -60,6 +60,12 @@ syn match haskellImport "^\s*\<import\>\s\+\(\<safe\>\s\+\)\?\(\<qualified\>\s\+
 	\ haskellPragma
 syn keyword haskellKeyword do case of
 
+if get(g:, 'haskell_enable_delimiter_is_type')
+	syn region haskellParens matchgroup=haskellType start="(" end=")" contains=TOP,haskellTypeSig,@Spell
+	syn region haskellBrackets matchgroup=haskellType start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
+	syn region haskellBlock matchgroup=haskellType start="{" end="}" contains=TOP,haskellBlockComment,@Spell
+endif
+
 if get(g:, 'haskell_enable_static_pointers', 0)
 	syn keyword haskellStatic static
 endif
