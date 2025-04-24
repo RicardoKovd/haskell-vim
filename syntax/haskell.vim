@@ -159,11 +159,7 @@ if get(g:, 'haskell_enable_pattern_synonyms', 0)
 endif
 
 if get(g:, 'haskell_enable_boolean', 0)
-	syn keyword haskellBoolean True False
-endif
-
-if get(g:, 'haskell_enable_ordering', 0)
-	syn keyword haskellBoolean True False
+	syn keyword haskellBoolean True False otherwise
 endif
 
 if get(g:, 'haskell_enable_ordering', 0)
