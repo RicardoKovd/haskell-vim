@@ -111,12 +111,6 @@ syn keyword haskellTodo TODO FIXME HACK NOTE WARNING contained
 " Treat a shebang line at the start of the file as a comment
 syn match haskellShebang "\%^#!.*$"
 
-if get(g:, 'haskell_enable_delimiter_is_type')
-	syn region haskellParens matchgroup=haskellType start="(" end=")" contains=TOP,haskellTypeSig,@Spell
-	syn region haskellBrackets matchgroup=haskellType start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
-	syn region haskellBlock matchgroup=haskellType start="{" end="}" contains=TOP,@Spell
-endif
-
 if !get(g:, 'haskell_disable_TH', 0)
 	syn match haskellQuasiQuoted "." containedin=haskellQuasiQuote contained
 	syn region haskellQuasiQuote matchgroup=haskellTH start="\[[_a-zA-Z][a-zA-Z0-9._']*|" end="|\]"
